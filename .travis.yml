@@ -22,3 +22,15 @@ after_success:
   - docker push rmrjaiswal/multi-nginx
   - docker push rmrjaiswal/multi-server
   - docker push rmrjaiswal/multi-worker
+
+deploy:
+  provider: elasticbeanstalk
+  region: 'ca-central-1'
+  app: 'multi-docker'
+  env: 'Multi-docker-env'
+  bucket_name: 'elasticbeanstalk-ca-central-1-545362484401'
+  bucket_path: 'multi-docker'
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
